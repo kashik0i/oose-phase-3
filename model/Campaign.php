@@ -1,17 +1,14 @@
 <?php
-require_once "../core/Model.php";
 
 class Campaign extends Model
 {
-    public function getById(int $id): Campaign
+    public static function getById(int $id): Model
     {
-        $this->db->query("SELECT * FROM campaign WHERE id='" . $id . "'");
-        // TODO: Build campaign model
+        // TODO: Implement getById() method.
     }
 
-    public function getByAttr(string $attr, string $val): Campaign
+    public static function getByAttr(string $attr, string $val): Model
     {
-        $this->db->query("SELECT * FROM campaign WHERE " . $attr . "=' . $val . '");
-        // TODO: Build campaign model
+        // TODO: Implement getByAttr() method.
     }
 }

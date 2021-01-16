@@ -1,17 +1,39 @@
 <?php
-require_once "../core/Model.php";
 
 class User extends Model
 {
-    public function getById(int $id): User
+    private string $id;
+    private string $first_name;
+    private string $last_name;
+
+    public static function getById(int $id): User
     {
-        $this->db->query("SELECT * FROM user WHERE id='" . $id . "'");
-        // TODO: Build user model
+        $query = PDOWrapper::getConnection()->prepare("SELECT * FROM user WHERE id='" . $id . "'");
+        $query->setFetchMode(PDO::FETCH_CLASS, "User");
+        $query->execute();
+        return $query->fetch();
     }
 
-    public function getByAttr(string $attr, string $val): User
+    public static function getByAttr(string $attr, string $val): User
     {
-        $this->db->query("SELECT * FROM user WHERE " . $attr . "=' . $val . '");
-        // TODO: Build user model
+        $query = PDOWrapper::getConnection()->prepare("SELECT * FROM user WHERE " . $attr . "=' . $val . '");
+        $query->setFetchMode(PDO::FETCH_CLASS, "User");
+        $query->execute();
+        return $query->fetch();
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getFirstName(): string
+    {
+        return $this->first_name;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->last_name;
     }
 }

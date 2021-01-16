@@ -11,8 +11,12 @@ class UserController extends Controller
 
     protected function getProfile(array $args)
     {
-        echo "Profile";
-        print_r($args);
+        echo "Profile<hr>";
+
+        $id = $args['id'];
+
+        $user = User::getById($id);
+        echo $user->getFirstName();
     }
 }
 

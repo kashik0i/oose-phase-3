@@ -2,6 +2,25 @@
 
 abstract class Controller
 {
+    public function __construct()
+    {
+        foreach (glob("../../core/*.php") as $filename) {
+            require_once $filename;
+        }
+
+        foreach (glob("../../util/*.php") as $filename) {
+            require_once $filename;
+        }
+
+        foreach (glob("../../model/*.php") as $filename) {
+            require_once $filename;
+        }
+
+        foreach (glob("../../view/*.php") as $filename) {
+            require_once $filename;
+        }
+    }
+
     public final function resolveHttpRequest()
     {
         if (!isset($_GET['action'])) {
