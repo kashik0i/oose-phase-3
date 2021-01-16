@@ -1,7 +1,9 @@
 <?php
-require_once "../../core/BaseController.php";
+require_once "../../core/Controller.php";
 
-class UserController extends BaseController
+class UserController extends Controller
 {
-
 }
+
+$controller = new UserController();
+$controller->resolveHttpRequest();
