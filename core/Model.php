@@ -9,10 +9,16 @@ abstract class Model
         return self::executeQuerySingle($stmt);
     }
 
-    public static final function getByAttr(string $attr, string $val): self
+    public static final function get(string $attr, string $val): self
     {
-        $stmt = PDOWrapper::getConnection()->prepare("SELECT * FROM " . get_called_class() . " WHERE " . $attr . "=' . $val . '");
+        $stmt = PDOWrapper::getConnection()->prepare("SELECT * FROM " . get_called_class() . " WHERE " . $attr . "='" . $val . "'");
         return self::executeQuerySingle($stmt);
+    }
+
+    public static final function getAll(string $attr, string $val): array
+    {
+        $stmt = PDOWrapper::getConnection()->prepare("SELECT * FROM " . get_called_class() . " WHERE " . $attr . "='" . $val . "'");
+        return self::executeQueryMultiple($stmt);
     }
 
     private static final function executeQuerySingle(PDOStatement $stmt): self

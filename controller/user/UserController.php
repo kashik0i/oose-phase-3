@@ -13,10 +13,13 @@ class UserController extends Controller
     {
         echo "Profile<hr>";
 
-        $id = $args['id'];
+        var_dump(User::getAll("first_name", "mohamed"));
 
-        $user = User::getById($id);
-        echo "User ID: " . $user->getId() . ' - Name: ' . $user->getFirstName() . ' ' . $user->getLastName();
+//        $id = $args['id'];
+
+//        $user = User::getById($id);
+//        $user = User::get("id", 1);
+//        echo "User ID: " . $user->getId() . ' - Name: ' . $user->getFirstName() . ' ' . $user->getLastName();
     }
 }
 
