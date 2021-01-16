@@ -17,9 +17,9 @@ abstract class BaseController
                 // catching Throwable method doesn't exist
             }
         }
-        catch (Throwable $t)
+        catch (Exception $e)
         {
-            echo $t->getTraceAsString()."\n".$t->getMessage();
+            echo $e->getTraceAsString()."\n".$e->getMessage();
         }
 
     }
