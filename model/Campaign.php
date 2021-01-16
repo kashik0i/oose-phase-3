@@ -1,16 +1,17 @@
 <?php
-require_once "../core/BaseModel.php";
+require_once "../core/Model.php";
 
-class Campaign extends BaseModel
+class Campaign extends Model
 {
-
-    public function getByAttr()
+    public function getById(int $id): Campaign
     {
-        // TODO: Implement getByAttr() method.
+        $this->db->query("SELECT * FROM campaign WHERE id='" . $id . "'");
+        // TODO: Build campaign model
     }
 
-    public function getById()
+    public function getByAttr(string $attr, string $val): Campaign
     {
-        // TODO: Implement getById() method.
+        $this->db->query("SELECT * FROM campaign WHERE " . $attr . "=' . $val . '");
+        // TODO: Build campaign model
     }
 }

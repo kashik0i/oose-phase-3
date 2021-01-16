@@ -1,16 +1,17 @@
 <?php
-require_once "../core/BaseModel.php";
+require_once "../core/Model.php";
 
-class User extends BaseModel
+class User extends Model
 {
-
-    public function getByAttr()
+    public function getById(int $id): User
     {
-        // TODO: Implement getByAttr() method.
+        $this->db->query("SELECT * FROM user WHERE id='" . $id . "'");
+        // TODO: Build user model
     }
 
-    public function getById()
+    public function getByAttr(string $attr, string $val): User
     {
-        // TODO: Implement getById() method.
+        $this->db->query("SELECT * FROM user WHERE " . $attr . "=' . $val . '");
+        // TODO: Build user model
     }
 }
