@@ -1,21 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2021 at 06:34 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- Generation Time: Jan 16, 2021 at 09:58 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT = @@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS = @@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION = @@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
 --
@@ -28,11 +27,20 @@ SET time_zone = "+00:00";
 -- Table structure for table `activity`
 --
 
-CREATE TABLE `activity`(
-                           `id`         int(11)   NOT NULL,
-                           `created_at` timestamp NULL DEFAULT current_timestamp(),
-                           `updated_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `activity`
+(
+    `id`         int(11)   NOT NULL,
+    `created_at` timestamp NULL DEFAULT current_timestamp(),
+    `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
+--
+-- Dumping data for table `activity`
+--
+
+INSERT INTO `activity` (`id`, `created_at`, `updated_at`)
+VALUES (1, '2021-01-16 20:20:57', '2021-01-16 20:20:57');
 
 -- --------------------------------------------------------
 
@@ -42,11 +50,12 @@ CREATE TABLE `activity`(
 
 CREATE TABLE `campaign`
 (
-    `id`          int(11) NOT NULL,
-    `title`       varchar(255) DEFAULT NULL,
-    `description` varchar(255) DEFAULT NULL,
-    `activity_id` int(11)      DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    `id`          int(11)      NOT NULL,
+    `title`       varchar(255) NOT NULL,
+    `description` varchar(255) NOT NULL,
+    `activity_id` int(11)      NOT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -56,13 +65,23 @@ CREATE TABLE `campaign`
 
 CREATE TABLE `user`
 (
-    `id`          int(11) NOT NULL,
-    `first_name`  varchar(50) DEFAULT NULL,
-    `last_name`   varchar(50) DEFAULT NULL,
-    `birth_date`  date        DEFAULT NULL,
-    `activity_id` int(11)     DEFAULT NULL
+    `id`           int(11)     NOT NULL,
+    `first_name`   varchar(50) NOT NULL,
+    `last_name`    varchar(50) NOT NULL,
+    `email`        varchar(64) NOT NULL,
+    `password`     varchar(64) NOT NULL,
+    `phone_number` varchar(24) NOT NULL,
+    `birth_date`   date        NOT NULL,
+    `activity_id`  int(11)     NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `phone_number`, `birth_date`, `activity_id`)
+VALUES (1, 'Mohamed', 'Nasser', 'm@n.com', '123', '01001234567', '1994-11-16', 1);
 
 --
 -- Indexes for dumped tables
@@ -96,7 +115,8 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 2;
 
 --
 -- AUTO_INCREMENT for table `campaign`
@@ -108,7 +128,8 @@ ALTER TABLE `campaign`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 2;
 
 --
 -- Constraints for dumped tables
