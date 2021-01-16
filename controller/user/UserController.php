@@ -16,7 +16,7 @@ class UserController extends Controller
         $id = $args['id'];
 
         $user = User::getById($id);
-        echo $user->getFirstName();
+        echo "User ID: " . $user->getId() . ' - Name: ' . $user->getFirstName() . ' ' . $user->getLastName();
     }
 }
 
