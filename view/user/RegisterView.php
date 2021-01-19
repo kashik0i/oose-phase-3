@@ -12,7 +12,7 @@ class RegisterView extends View
         $html = '<div class="row">
     <div class="col-sm-4"></div>
     <div class="col-sm-4">
-        <form method="post" action="UserController.php?action=postRegister&test=1">
+        <form method="post" action="UserController.php?action=postRegister">
 
             <div class="mb-3">
                 <label for="firstName" class="form-label">First Name</label>

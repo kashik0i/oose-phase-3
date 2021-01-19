@@ -62,5 +62,4 @@ class User extends Model
         }
         return $errors;
     }
-//    private static function validate(string $arg, )
 }

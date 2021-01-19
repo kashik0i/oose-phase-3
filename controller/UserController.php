@@ -27,9 +27,15 @@ class UserController extends Controller
     {
         $errors = User::validate($args);
         if (sizeof($errors) > 0) {
+
             var_dump($errors);
+
         } else {
-            echo "Done";
+
+            unset($args['confirm_password']);
+            $user = User::create($args);
+
+            var_dump($user);
         }
     }
 }
