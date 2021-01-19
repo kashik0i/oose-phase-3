@@ -18,6 +18,9 @@ abstract class Controller
         foreach (glob("../view/*.php") as $filename) {
             require_once $filename;
         }
+        foreach (glob("../view/user/*.php") as $filename) {
+            require_once $filename;
+        }
     }
 
     public final function resolveHttpRequest()

@@ -50,4 +50,17 @@ class User extends Model
     {
         return $this->activity_id;
     }
+
+    public static function validate(array $args): array
+    {
+        $errors = self::validateExistence($args, ['first_name', 'last_name', 'email', 'password',
+                                                  'confirm_password', 'phone_number', 'birth_date']);
+        if (sizeof($errors) == 0) {
+            if (strcmp($args['password'], $args['confirm_password']) != 0) {
+                array_push($errors, "Password does not match confirmation");
+            }
+        }
+        return $errors;
+    }
+//    private static function validate(string $arg, )
 }

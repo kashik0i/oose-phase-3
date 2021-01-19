@@ -2,6 +2,23 @@
 
 abstract class Model
 {
+    public static abstract function validate(array $args): array;
+
+    public static function validateExistence(array $args, array $argNames): array
+    {
+        $errors = [];
+
+        foreach ($argNames as $argName) {
+            $arg = $args[$argName];
+            if (!isset($arg) || strlen(trim($arg)) == 0) {
+                $argName = str_replace('_', ' ', $argName);
+                array_push($errors, ucwords($argName) . ' cannot be empty');
+            }
+        }
+
+        return $errors;
+    }
+
     /** @noinspection SqlResolve */
     public static final function getById(int $id): self
     {
