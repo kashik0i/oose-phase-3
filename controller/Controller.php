@@ -4,19 +4,18 @@ abstract class Controller
 {
     public function __construct()
     {
-        foreach (glob("../../core/*.php") as $filename) {
+        require_once "../model/Model.php";
+        require_once "../view/View.php";
+
+        foreach (glob("../util/*.php") as $filename) {
             require_once $filename;
         }
 
-        foreach (glob("../../util/*.php") as $filename) {
+        foreach (glob("../model/*.php") as $filename) {
             require_once $filename;
         }
 
-        foreach (glob("../../model/*.php") as $filename) {
-            require_once $filename;
-        }
-
-        foreach (glob("../../view/*.php") as $filename) {
+        foreach (glob("../view/*.php") as $filename) {
             require_once $filename;
         }
     }
@@ -27,11 +26,10 @@ abstract class Controller
             $_GET['action'] = "default";
         }
 
-        $method = $_SERVER['REQUEST_METHOD'];
         $action = $_GET['action'];
-
         unset($_GET['action']);
 
+        $method = $_SERVER['REQUEST_METHOD'];
         switch ($method) {
             case "GET":
                 $this->executeAction($action, $_GET);
