@@ -15,20 +15,68 @@ abstract class View
 
     private function getHeader(): string
     {
+        if (isset($_SESSION['user'])) {
+
+            $user = unserialize($_SESSION['user']);
+
+            $navbar_links_right = '<div class="nav-item btn-group">
+    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false">
+        ' . $user->getFirstName() . ' ' . $user->getLastName() . '
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end">
+        <li><a href="UserController.php?action=getProfile&id=' . $user->getId() . '" class="dropdown-item">Profile</a></li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+        <li><a href="UserController.php?action=getLogout" class="dropdown-item">Logout</a></li>
+    </ul>
+</div>';
+
+        } else {
+
+            $navbar_links_right = '<a href="UserController.php?action=getLogin" class="nav-item btn btn-sm btn-outline-primary me-1" type="submit">Login</a>
+                <a href="UserController.php?action=getRegister" class="nav-item btn btn-sm btn-outline-success">Register</a>';
+
+        }
+
         return '<!doctype html>
 <html lang="en">
-  <head>
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-    <title>' . $this->getTitle() . '</title>
-  </head>
-  <body>
-  <div class="container-fluid">';
+    <title>' . Controller::$APP_TITLE . ' | ' . $this->getTitle() . '</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="UserController.php">' . Controller::$APP_TITLE . '</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="UserController.php">Home</a>
+                </li>
+            </ul>
+            <div class="d-flex">
+                ' . $navbar_links_right . '
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+      ';
     }
 
     private function getFooter(): string

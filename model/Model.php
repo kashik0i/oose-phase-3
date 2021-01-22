@@ -78,13 +78,15 @@ abstract class Model
     {
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
-        return $stmt->fetch();
+        $result = $stmt->fetch();
+        return is_bool($result) ? null : $result;
     }
 
     private static final function executeMultipleFetch(PDOStatement $stmt): array
     {
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
-        return $stmt->fetchAll();
+        $result = $stmt->fetchAll();
+        return is_bool($result) ? [] : $result;
     }
 }

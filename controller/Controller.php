@@ -2,8 +2,12 @@
 
 abstract class Controller
 {
+    public static string $APP_TITLE = "Charity";
+
     public function __construct()
     {
+        session_start();
+
         require_once "../model/Model.php";
         require_once "../view/View.php";
 

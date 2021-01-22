@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2021 at 09:58 PM
+-- Generation Time: Jan 22, 2021 at 08:05 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -40,7 +40,8 @@ CREATE TABLE `activity`
 --
 
 INSERT INTO `activity` (`id`, `created_at`, `updated_at`)
-VALUES (1, '2021-01-16 20:20:57', '2021-01-16 20:20:57');
+VALUES (1, '2021-01-16 20:20:57', '2021-01-16 20:20:57'),
+       (2, '2021-01-22 18:28:33', '2021-01-22 18:28:33');
 
 -- --------------------------------------------------------
 
@@ -81,7 +82,8 @@ CREATE TABLE `user`
 --
 
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `phone_number`, `birth_date`, `activity_id`)
-VALUES (1, 'Mohamed', 'Nasser', 'm@n.com', '123', '01001234567', '1994-11-16', 1);
+VALUES (1, 'Mohamed', 'Nasser', 'm@n.com', '123', '01001234567', '1994-11-16', 1),
+       (2, 'Amr', 'Badawy', 'a@b.com', '123', '01007777777', '1111-11-11', 2);
 
 --
 -- Indexes for dumped tables
@@ -105,6 +107,8 @@ ALTER TABLE `campaign`
 --
 ALTER TABLE `user`
     ADD PRIMARY KEY (`id`),
+    ADD UNIQUE KEY `email` (`email`),
+    ADD UNIQUE KEY `phone_number` (`phone_number`),
     ADD KEY `user_activity_activity_id_fk` (`activity_id`);
 
 --
@@ -116,7 +120,7 @@ ALTER TABLE `user`
 --
 ALTER TABLE `activity`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
-    AUTO_INCREMENT = 2;
+    AUTO_INCREMENT = 3;
 
 --
 -- AUTO_INCREMENT for table `campaign`
@@ -129,7 +133,7 @@ ALTER TABLE `campaign`
 --
 ALTER TABLE `user`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
-    AUTO_INCREMENT = 2;
+    AUTO_INCREMENT = 3;
 
 --
 -- Constraints for dumped tables
